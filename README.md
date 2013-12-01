@@ -1,4 +1,4 @@
-NamePLates Bukkit server plugin
+NamePlates
 =======================================
 A plugin to the Minecraft server Mod Bukkit
 
