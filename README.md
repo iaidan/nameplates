@@ -12,18 +12,17 @@ Features
 
 Dependencies
 ------------
-Bukkit Minecraft Server Mod
-http://bukkit.org
+Bukkit Minecraft Server Mod, http://bukkit.org
 
 Getting Started
 ===============
 
-Drag the nameplates.jar into the Bukkit plugins folder
-Start the Bukkit server
+		Drag the nameplates.jar into the Bukkit plugins folder
+		Start the Bukkit server
 
 Optional
 --------
-Stop the Bukkit server
-Edit the settings in plugins/nameplates/config.yml
-Start the Bukkit server
+		Stop the Bukkit server
+		Edit the settings in plugins/nameplates/config.yml
+		Start the Bukkit server
 
