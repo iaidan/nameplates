@@ -1,6 +1,6 @@
 NamePlates
 =======================================
-A plugin to the Minecraft server Mod Bukkit
+A plugin to the Minecraft Server Mod Bukkit
 
 Features
 --------
