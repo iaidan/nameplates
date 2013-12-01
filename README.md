@@ -1,6 +1,6 @@
 NamePLates Bukkit server plugin
 =======================================
-A plugin to the Minecraft server mod Bukkit
+A plugin to the Minecraft server Mod Bukkit
 
 Features
 --------
@@ -12,7 +12,8 @@ Features
 
 Dependencies
 ------------
-bukkit
+Bukkit Minecraft Server Mod
+http://bukkit.org
 
 Getting Started
 ===============
