@@ -1,9 +1,10 @@
 
 <h2>NamePlates</h2>
 
+A simple plugin for changing the colours of players names in the server chat, above players heads and in the player list 
+
 <h3>Dependencies</h3>
 Bukkit Minecraft Server Mod, http://bukkit.org
-View this plugin on Bukkit, http://dev.bukkit.org/bukkit-plugins/nameplates/
 
 <h3>Features</h3>
 <ul>
@@ -54,4 +55,4 @@ View this plugin on Bukkit, http://dev.bukkit.org/bukkit-plugins/nameplates/
   </tbody>
 </table>
 <h3><a href="http://github.com/iaidan/nameplates/blob/master/config.yml">Configuration</a></h3>
-<h3><a href="http://github.com/iaidan/nameplates">Source</a></h3>
+<h3><a href="http://dev.bukkit.org/bukkit-plugins/nameplates/">View on bukkit</a></h3>
