@@ -11,10 +11,13 @@ commands:
 permissions:
   nameplates.version:
      description: Display NamePlates version and information
+     default: true
+  nameplates.refresh:
+     description: Refresh players, colours and player list
      default: op
   nameplates.reload:
      description: Reload NamePlates
      default: op
-  nameplates.refresh:
-     description: Refresh players, colours and player list
+  nameplates.help:
+     description: List of plugin commands and usage
      default: op

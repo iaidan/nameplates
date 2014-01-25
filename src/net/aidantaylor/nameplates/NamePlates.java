@@ -91,18 +91,22 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		refreshPlates();
 		
 		if (autoRefresh == true) {
-			if (timer != null) {
-				timer.cancel();
-			}
-			
-			timer = new Timer();
-	
-			timer.schedule(new TimerTask() {
-			    public void run() {
-			    	refreshPlates();
-			    }
-			 }, 0, refreshInterval);
+			autoRefresh();
 		}
+	}
+	
+	private void autoRefresh() {
+		if (timer != null) {
+			timer.cancel();
+		}
+		
+		timer = new Timer();
+
+		timer.schedule(new TimerTask() {
+		    public void run() {
+			   	refreshPlates();
+		    }
+		}, 0, refreshInterval);
 	}
 
 	private void genColours() {
@@ -139,10 +143,10 @@ public final class NamePlates extends JavaPlugin implements Listener {
 	public Team newTeam(String name, String prefix, String suffix) {
 		Team team = null;
 		
-		if (board.getTeam("Operator") == null) {
-			team = board.registerNewTeam("Operator");
+		if (board.getTeam(name) == null) {
+			team = board.registerNewTeam(name);
 		} else {
-			team = board.getTeam("Operator");
+			team = board.getTeam(name);
 		}
 		
 		team.setPrefix(prefix);
