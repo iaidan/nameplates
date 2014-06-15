@@ -47,6 +47,10 @@ public final class NamePlates extends JavaPlugin implements Listener {
 			timer.cancel();
 		}
 		
+		for(int i = 0; i < teams.size(); i++) {
+			board.getTeam(teams.get(i).getName()).unregister();
+		}
+		
 		log(getName() + " has been disabled!", true);
 	}
 
