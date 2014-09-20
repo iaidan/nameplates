@@ -1,4 +1,4 @@
-package main.java.net.aidantaylor.nameplates;
+package net.aidantaylor.nameplates;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
