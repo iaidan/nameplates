@@ -21,7 +21,7 @@ modifychat: true
 
 # What colour should OPs have?
 # To unset this option, you can comment it out or make it OPColour: ''
-OPColour: '&4'
+#OPColour: '&4'
 
 # Should coloured names automatically refreshed?
 autorefresh: true
@@ -44,7 +44,7 @@ onlycustom: false
 # Custom tag permissions, these can be used in your preferred permissions manager
 # List format = name:format
 # These fill be formed into permissions for you to use: nameplates.custom.<custom permission name>
-custom:
-  name:
-    prefix: '&4'
-    suffix: ''
+#custom:
+  #name:
+    #prefix: '&4'
+    #suffix: ''

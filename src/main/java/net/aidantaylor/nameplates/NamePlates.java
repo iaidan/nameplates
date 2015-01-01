@@ -7,6 +7,7 @@ import java.util.TimerTask;
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,7 +29,7 @@ public final class NamePlates extends JavaPlugin implements Listener {
 			"GOLD", "GRAY", "GREEN", "LIGHT_PURPLE", "RED", "YELLOW", "WHITE" }, custom;
 	private ArrayList<Team> teams = new ArrayList<Team>();
 	private HealthBar health;
-	private String OPColour;
+	private String OPColour = null;
 	private Timer timer;
 
 	@Override
@@ -47,24 +48,21 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		if (timer != null) {
 			timer.cancel();
 		}
-
-		for (Player player : Bukkit.getOnlinePlayers()) {
-			for (String colour : colours) {
-				Team r = teams.get(ArrayUtils.indexOf(colours, colour));
-				r.removePlayer(player.getPlayer());
+		
+		for(Team team : teams) {
+			for(OfflinePlayer player : team.getPlayers()){
+				team.removePlayer(player.getPlayer());
 
 				if (modifyChat == true) {
-					player.setDisplayName(player.getName());
+					((Player) player).setDisplayName(player.getName());
 				}
 				
 				if (modifyTab == true) {
-					player.setPlayerListName(player.getName());
+					((Player) player).setPlayerListName(player.getName());
 				}
 			}
-		}
-		
-		for(int i = 0; i < teams.size(); i++) {
-			board.getTeam(teams.get(i).getName()).unregister();
+			
+			team.unregister();
 		}
 		
 		log(getName() + " has been disabled!", true);
@@ -87,12 +85,6 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		modifyChat = configFile.getBoolean("modifychat");
 		
 		OPColour = configFile.getString("OPColour");
-		
-		if (OPColour != null && OPColour != "") {
-			OPColour = ChatColor.translateAlternateColorCodes(new String("&").charAt(0), configFile.getString("OPColour"));
-		} else {
-			OPColour = null;
-		}
 		
 		showHealth = configFile.getBoolean("showhealth");
 		
@@ -193,7 +185,7 @@ public final class NamePlates extends JavaPlugin implements Listener {
 
 		Team team = null;
 
-		String prefix = "";
+		String prefix = "e";
 		String suffix = "";
 
 		for (String colour : colours) {
@@ -210,7 +202,8 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		}
 		
 		if (player.isOp() && OPColour != null) {
-			team = newTeam("Operator", OPColour, ChatColor.RESET.toString());
+			log(player.getName() + " is an Operator");
+			team = newTeam("Operator", ChatColor.translateAlternateColorCodes(new String("&").charAt(0), OPColour), ChatColor.RESET.toString());
 			team.addPlayer(player.getPlayer());
 			
 			prefix = team.getPrefix();
@@ -225,7 +218,8 @@ public final class NamePlates extends JavaPlugin implements Listener {
 						
 						prefix = team.getPrefix();
 						suffix = team.getSuffix();
-						
+
+						log(player.getName() + " added to the team " + team.getName());
 						break;
 					}
 				}
@@ -241,6 +235,7 @@ public final class NamePlates extends JavaPlugin implements Listener {
 					
 					prefix = team.getPrefix();
 					suffix = team.getSuffix();
+					log(player.getName() + " 2");
 					
 					break;
 				}
