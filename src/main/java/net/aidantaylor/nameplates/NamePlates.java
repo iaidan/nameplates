@@ -11,6 +11,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
@@ -46,6 +47,21 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		if (timer != null) {
 			timer.cancel();
 		}
+
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			for (String colour : colours) {
+				Team r = teams.get(ArrayUtils.indexOf(colours, colour));
+				r.removePlayer(player.getPlayer());
+
+				if (modifyChat == true) {
+					player.setDisplayName(player.getName());
+				}
+				
+				if (modifyTab == true) {
+					player.setPlayerListName(player.getName());
+				}
+			}
+		}
 		
 		for(int i = 0; i < teams.size(); i++) {
 			board.getTeam(teams.get(i).getName()).unregister();
@@ -55,7 +71,7 @@ public final class NamePlates extends JavaPlugin implements Listener {
 	}
 
 	@EventHandler
-	public void onPlayerLogin(PlayerLoginEvent event) {
+	public void onPlayerJoin(PlayerJoinEvent event) {
 		setPlayer(event.getPlayer());
 	}
 
@@ -69,7 +85,14 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		cleanTab = configFile.getBoolean("cleantab");
 		
 		modifyChat = configFile.getBoolean("modifychat");
-		OPColour = ChatColor.translateAlternateColorCodes(new String("&").charAt(0), configFile.getString("OPColour"));
+		
+		OPColour = configFile.getString("OPColour");
+		
+		if (OPColour != null && OPColour != "") {
+			OPColour = ChatColor.translateAlternateColorCodes(new String("&").charAt(0), configFile.getString("OPColour"));
+		} else {
+			OPColour = null;
+		}
 		
 		showHealth = configFile.getBoolean("showhealth");
 		
@@ -176,6 +199,14 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		for (String colour : colours) {
 			Team r = teams.get(ArrayUtils.indexOf(colours, colour));
 			r.removePlayer(player.getPlayer());
+		}
+
+		if (modifyChat == true) {
+			player.setDisplayName(player.getName());
+		}
+		
+		if (modifyTab == true) {
+			player.setPlayerListName(player.getName());
 		}
 		
 		if (player.isOp() && OPColour != null) {
