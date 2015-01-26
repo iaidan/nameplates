@@ -3,7 +3,7 @@ version: 1.1.0
 author: mouseymars
 description: NamePlates is a plugin that allows you to change the players name plates (also known as a name tag, or floating name), and can also change the tab!
 website: http://github.com/iaidan/nameplates
-main: net.aidantaylor.nameplates.NamePlates
+main: net.aidantaylor.bukkit.nameplates.NamePlates
 commands:
    nameplates:
      description: Main command for all 'NamePlates' commands
