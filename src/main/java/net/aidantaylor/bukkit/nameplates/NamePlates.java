@@ -35,7 +35,7 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		getCommand("nameplates").setExecutor(new CommandExe(this));
 		getServer().getPluginManager().registerEvents(this, this);
 
-		this.saveDefaultConfig();
+		saveDefaultConfig();
 
 		log(getName() + " has been enabled!", true);
 		load();
@@ -47,21 +47,7 @@ public final class NamePlates extends JavaPlugin implements Listener {
 			timer.cancel();
 		}
 		
-		for(Team team : teams) {
-			for(OfflinePlayer player : team.getPlayers()){
-				team.removePlayer(player.getPlayer());
-
-				if (modifyChat == true) {
-					((Player) player).setDisplayName(player.getName());
-				}
-				
-				if (modifyTab == true) {
-					((Player) player).setPlayerListName(player.getName());
-				}
-			}
-			
-			team.unregister();
-		}
+		unload();
 		
 		log(getName() + " has been disabled!", true);
 	}
@@ -73,6 +59,7 @@ public final class NamePlates extends JavaPlugin implements Listener {
 	}
 
 	public void load() {
+		getConfig().options().copyDefaults(true);
 		FileConfiguration configFile = getConfig();
 		
 		autoRefresh = configFile.getBoolean("autorefresh");
@@ -89,8 +76,12 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		
 		debug = configFile.getBoolean("debug");
 		
-		onlyCustom = configFile.getBoolean("onlycustom");
-		custom = configFile.getConfigurationSection("custom").getKeys(false).toArray(new String[0]);
+		try {
+			onlyCustom = configFile.getBoolean("onlycustom");
+			custom = configFile.getConfigurationSection("custom").getKeys(false).toArray(new String[0]);
+		} catch(Exception e) {
+			custom = new String[0];
+		}
 		
 		manager = Bukkit.getScoreboardManager();
 		setBoard(manager.getMainScoreboard());
@@ -110,6 +101,24 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		
 		if (autoRefresh == true) {
 			autoRefresh();
+		}
+	}
+	
+	public void unload() {
+		for(Team team : teams) {
+			for(OfflinePlayer player : team.getPlayers()){
+				team.removePlayer(player.getPlayer());
+
+				if (modifyChat == true) {
+					((Player) player).setDisplayName(player.getName());
+				}
+				
+				if (modifyTab == true) {
+					((Player) player).setPlayerListName(player.getName());
+				}
+			}
+			
+			team.unregister();
 		}
 	}
 	
@@ -147,8 +156,8 @@ public final class NamePlates extends JavaPlugin implements Listener {
 	@Override
 	public void reloadConfig() {
 		super.reloadConfig();
-		getConfig().options().copyDefaults(true);
 		
+		unload();
 		load();
 	}
 	
