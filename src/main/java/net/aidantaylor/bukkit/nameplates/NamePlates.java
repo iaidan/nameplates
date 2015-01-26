@@ -1,4 +1,4 @@
-package net.aidantaylor.nameplates;
+package net.aidantaylor.bukkit.nameplates;
 
 import java.util.ArrayList;
 import java.util.Timer;

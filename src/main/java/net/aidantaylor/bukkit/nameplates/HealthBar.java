@@ -1,4 +1,4 @@
-package net.aidantaylor.nameplates;
+package net.aidantaylor.bukkit.nameplates;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

@@ -1,6 +1,6 @@
-package net.aidantaylor.nameplates;
+package net.aidantaylor.bukkit.nameplates;
 
-import net.aidantaylor.core.Content;
+import net.aidantaylor.bukkit.core.Content;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

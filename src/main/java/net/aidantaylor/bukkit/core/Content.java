@@ -1,4 +1,4 @@
-package net.aidantaylor.core;
+package net.aidantaylor.bukkit.core;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
