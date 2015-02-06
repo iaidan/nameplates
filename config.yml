@@ -35,6 +35,9 @@ refreshinterval: 60000
 # Set this to false to disable the nameplates.health permissions
 showhealth: true
 
+# Should display names be used over actual player names?
+useDisplayName: true
+
 # Should debug information be displayed?
 debug: false
 
