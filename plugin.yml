@@ -7,7 +7,7 @@ main: net.aidantaylor.bukkit.nameplates.NamePlates
 commands:
    nameplates:
       description: Main command for all 'NamePlates' commands
-       aliases: [nametags, ntags, nplates]
+      aliases: [nametags, ntags, nplates]
 permissions:
    nameplates.version:
        description: Display NamePlates version and information
