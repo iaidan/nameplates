@@ -1,4 +1,5 @@
 <h2>NamePlates</h2>
+<img src="https://travis-ci.org/iaidan/nameplates.svg" alt="" />
 
 A simple plugin for changing the colours of players names in the server chat, above players heads and in the player list 
 
