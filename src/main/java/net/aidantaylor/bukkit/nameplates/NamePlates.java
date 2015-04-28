@@ -220,7 +220,7 @@ public final class NamePlates extends JavaPlugin implements Listener {
 
 		Team team = null;
 
-		String prefix = "e";
+		String prefix = "";
 		String suffix = "";
 
 		for (String colour : colours) {
