@@ -3,6 +3,10 @@
   <groupId>net.aidantaylor.nameplates</groupId>
   <artifactId>nameplates</artifactId>
   <version>0.1.1</version>
+  <url>https://github.com/iaidan/nameplates</url>
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <build>
       <plugins>
           <plugin>

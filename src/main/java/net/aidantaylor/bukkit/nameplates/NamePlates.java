@@ -56,26 +56,25 @@ public final class NamePlates extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		setPlayer(event.getPlayer());
-		refreshPlates();
 	}
 
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 		
-		for(Team team : teams) {
-			team.removePlayer(player);
+		try {
+			player.getScoreboard().getPlayerTeam(player).removePlayer(player);
+		} catch(Exception e) {
 			
-			if (modifyChat == true) {
-				player.setDisplayName(player.getName());
-			}
-			
-			if (modifyTab == true) {
-				player.setPlayerListName(player.getName());
-			}
 		}
 		
-		refreshPlates();
+		if (modifyChat == true) {
+			player.setDisplayName(player.getName());
+		}
+		
+		if (modifyTab == true) {
+			player.setPlayerListName(player.getName());
+		}
 	}
 
 	public void load() {
@@ -129,15 +128,17 @@ public final class NamePlates extends JavaPlugin implements Listener {
 	public void unload() {
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			for(Team team : teams) {
-				team.removePlayer(player);
-				
-				if (modifyChat == true) {
-					player.setDisplayName(player.getName());
-				}
-				
-				if (modifyTab == true) {
-					player.setPlayerListName(player.getName());
-				}
+				try {
+					team.removePlayer(player);
+				} catch(Exception e) { }
+			}
+			
+			if (modifyChat == true) {
+				player.setDisplayName(player.getName());
+			}
+			
+			if (modifyTab == true) {
+				player.setPlayerListName(player.getName());
 			}
 		}
 			
@@ -180,9 +181,8 @@ public final class NamePlates extends JavaPlugin implements Listener {
 		}
 	}
 
-	@Override
-	public void reloadConfig() {
-		super.reloadConfig();
+	public void reload() {
+		reloadConfig();
 		
 		unload();
 		load();

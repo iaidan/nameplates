@@ -12,12 +12,12 @@ import net.aidantaylor.bukkit.core.Content;
 public class CommandExe implements CommandExecutor {
 	private PluginDescriptionFile info;
 	private Content Content;
-	private JavaPlugin javaplugin;
+	private NamePlates np;
 	private String help;
 
-	public CommandExe(JavaPlugin plugin) {
+	public CommandExe(NamePlates plugin) {
 		info = plugin.getDescription();
-		javaplugin = plugin;
+		np = plugin;
 		
 		help = ChatColor.WHITE + "Version" + ChatColor.GREEN
 				+ ": Display current version and information\n";
@@ -44,8 +44,8 @@ public class CommandExe implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "You do not have permission to access this command.");
 				} else {
 					sender.sendMessage(ChatColor.DARK_GREEN + "Reloading NamePlates...");
-					javaplugin.saveDefaultConfig();
-					javaplugin.reloadConfig();
+					np.saveDefaultConfig();
+					np.reload();
 					sender.sendMessage(ChatColor.DARK_GREEN + "Done.");
 				}
 			} else if (args[0].toLowerCase().equals("refresh")) {
@@ -53,7 +53,7 @@ public class CommandExe implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "You do not have permission to access this command.");
 				} else {
 					sender.sendMessage(ChatColor.DARK_GREEN + "Refreshing NamePlates...");
-					((NamePlates) javaplugin).refreshPlates();
+					np.refreshPlates();
 					sender.sendMessage(ChatColor.DARK_GREEN + "Done.");
 				}
 			} else if (args[0].toLowerCase().equals("version") || args[0].toLowerCase().equals("v")) {
